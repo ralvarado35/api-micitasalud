@@ -29,9 +29,10 @@ class NotificationAppointments extends Command
      */
     public function handle()
     {
-        //
+
         date_default_timezone_set("America/El_Salvador");
         //$simulet_hour_number = date("2024-05-31 15:01:35");//strtotime(date("2023-10-24 09:35:35"));
+
         $simulet_hour_number = date(now()->format("Y-m-d H:i:s"));
 
 
@@ -61,14 +62,14 @@ class NotificationAppointments extends Command
 
             $hour_start = $appointment->doctor_schedule_join_hour->doctor_schedule_hour->hour_start;
             $hour_end = $appointment->doctor_schedule_join_hour->doctor_schedule_hour->hour_end;
-            error_log($hour_start.' ---- '.$hour_end.' ---- '. $now_time_number_test);
+            //error_log($hour_start.' ---- '.$hour_end.' ---- '. $now_time_number_test);
             // 2023-10-25 08:30:00 -> 2023-10-25 07:30:00
             //$hour_start = strtotime(Carbon::parse("2024-05-31"." ".$hour_start)->subHour());
             $hour_start = strtotime(Carbon::parse($now." ".$hour_start)->subHour());
             $hour_end = strtotime(Carbon::parse($now." ".$hour_end)->subHour());
 
             //error_log($hour_start.' ---- '.$hour_end.' ---- '.$simulet_hour_number);
-            error_log($hour_start.' ---- '.$hour_end.' ---- '.$now_time_number);
+            //error_log($hour_start.' ---- '.$hour_end.' ---- '.$now_time_number);
 
 
             if($hour_start <= $now_time_number && $hour_end >= $now_time_number){
@@ -90,6 +91,6 @@ class NotificationAppointments extends Command
             Mail::to($patient["email"])->send(new NotificationAppoint($patient));
         }
 
-         dd($patients);
+        // dd($patients);
     }
 }

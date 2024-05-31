@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('app:notification-appointments')->timezone('America/El_Salvador')->everyMinute();
-       // $schedule->command('app:notification-appointment-wasap')->timezone('America/El_Salvador')->everyMinute();
+        $schedule->command('app:notification-appointment-wasap')->timezone('America/El_Salvador')->everyMinute();
     }
 
     /**
