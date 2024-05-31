@@ -44,9 +44,9 @@ class NotificationAppointments extends Command
         $now = now()->format("Y-m-d");
 
         $appointments = Appointment::whereDate("date_appointment",$now)//now()->format("Y-m-d")
-        ->where("status",1)
-        //->where("cron_state",1)
-        ->get();
+                    ->where("status",1)
+                    ->where("cron_state",1)
+                    ->get();
 
         //dd($appointments);
 
@@ -84,7 +84,7 @@ class NotificationAppointments extends Command
                     "hour_end_format" => Carbon::parse(date("Y-m-d")." ".$appointment->doctor_schedule_join_hour->doctor_schedule_hour->hour_end)->format("h:i A"),
                 ]);
             }
-            //$appointment->update(["cron_state" => 2]);
+            $appointment->update(["cron_state" => 2]);
         }
         foreach ($patients as $key => $patient) {
             Mail::to($patient["email"])->send(new NotificationAppoint($patient));
