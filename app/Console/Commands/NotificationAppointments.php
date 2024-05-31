@@ -65,6 +65,6 @@ class NotificationAppointments extends Command
             Mail::to($patient["email"])->send(new NotificationAppoint($patient));
         }
         
-        // dd($patients);
+         dd($patients);
     }
 }
