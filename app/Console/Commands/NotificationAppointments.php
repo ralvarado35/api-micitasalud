@@ -31,7 +31,7 @@ class NotificationAppointments extends Command
             date_default_timezone_set("America/El_Salvador");
             $patient = [
                 "name"  => "Roberto",
-                "surname" => "Alvarado",
+                "surname" => "Alvarado Lopez",
                 "avatar" => NULL,
                 "email" => "roberto.alvarado.35@gmail.com",
                 "mobile" => "71293626",
