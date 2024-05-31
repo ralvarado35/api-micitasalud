@@ -133,6 +133,7 @@ class NotificationAppointmentWasap extends Command
             echo "Response:\n$response\n";
         }
 
+
         dd($patients);
     }
 }
