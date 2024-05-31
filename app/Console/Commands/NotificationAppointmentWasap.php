@@ -87,7 +87,7 @@ class NotificationAppointmentWasap extends Command
 
             $data = [
                 'messaging_product' => 'whatsapp',
-                'to' => '319104057956594',
+                'to' => '+503 71293626',
                 'type' => 'template',
                 'template' => [
                     'name' => 'recordatorio',
