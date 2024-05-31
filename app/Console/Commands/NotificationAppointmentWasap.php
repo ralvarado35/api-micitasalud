@@ -83,7 +83,7 @@ class NotificationAppointmentWasap extends Command
             $fbApiUrl = 'https://graph.facebook.com/v19.0/319104057956594/messages';
             $data = [
                 'messaging_product' => 'whatsapp',
-                'to' => '50371293626',
+                'to' => '503'.'7129-3626',
                 'type' => 'template',
                 'template' => [
                     'name' => 'recordatorio',
