@@ -33,11 +33,12 @@ class NotificationAppointmentWasap extends Command
         //$simulet_hour_number = date(now()->format("Y-m-d")); //strtotime(date("2024-05-29 15:10:00"));  //
 
         //$simulet_hour_number = date(now()->format("Y-m-d H:i:s"));
-        $simulet_hour_number = date("2024-05-31 16:01:35");
+        $simulet_hour_number = date("2024-05-31 16:15:35");
         $now = now()->format("Y-m-d");
 
         $appointments = Appointment::whereDate("date_appointment",$now)//now()->format("Y-m-d")
                                     ->where("status",1)
+                                    ->where("cron_state",1)
                                     ->get();
 
         /*
@@ -76,6 +77,7 @@ class NotificationAppointmentWasap extends Command
                     "hour_end_format" => Carbon::parse(date("Y-m-d")." ".$appointment->doctor_schedule_join_hour->doctor_schedule_hour->hour_end)->format("h:i A"),
                 ]);
             }
+            $appointment->update(["cron_state" => 2]);
         }
 
         foreach ($patients as $key => $patient) {
@@ -83,7 +85,7 @@ class NotificationAppointmentWasap extends Command
             $fbApiUrl = 'https://graph.facebook.com/v19.0/319104057956594/messages';
             $data = [
                 'messaging_product' => 'whatsapp',
-                'to' => '503'.'7129-3626',
+                'to' => '503'.$patient["mobile"],
                 'type' => 'template',
                 'template' => [
                     'name' => 'recordatorio',
@@ -143,6 +145,6 @@ class NotificationAppointmentWasap extends Command
         }
 
 
-        dd($patients);
+        //dd($patients);
     }
 }
