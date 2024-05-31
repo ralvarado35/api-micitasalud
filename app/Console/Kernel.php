@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('app:notification-appointments')->timezone('America/El_Salvador')->everyFiveSeconds();
+        //$schedule->command('app:notification-appointments')->timezone('America/El_Salvador')->everyFiveSeconds();
        // $schedule->command('app:notification-appointment-wasap')->timezone('America/El_Salvador')->everyMinute();
     }
 
