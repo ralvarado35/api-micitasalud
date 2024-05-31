@@ -31,7 +31,7 @@ class NotificationAppointments extends Command
     {
         //
         date_default_timezone_set("America/El_Salvador");
-        $simulet_hour_number = date("2024-05-31 13:01:35");//strtotime(date("2023-10-24 09:35:35"));
+        $simulet_hour_number = date("2024-05-31 14:01:35");//strtotime(date("2023-10-24 09:35:35"));
         $appointments = Appointment::whereDate("date_appointment","2024-05-31")//now()->format("Y-m-d")
                                     ->where("status",1)
                                     //->where("cron_state",1)
@@ -41,7 +41,7 @@ class NotificationAppointments extends Command
         foreach ($appointments as $key => $appointment) {
             $hour_start = $appointment->doctor_schedule_join_hour->doctor_schedule_hour->hour_start;
             $hour_end = $appointment->doctor_schedule_join_hour->doctor_schedule_hour->hour_end;
-            
+
             // 2023-10-25 08:30:00 -> 2023-10-25 07:30:00
             $hour_start = strtotime(Carbon::parse("2024-05-31"." ".$hour_start)->subHour());
             $hour_end = strtotime(Carbon::parse("2024-05-31"." ".$hour_end)->subHour());
@@ -50,7 +50,7 @@ class NotificationAppointments extends Command
                 $patients->push([
                     "name" => $appointment->patient->name,
                     "surname" => $appointment->patient->surname,
-                    "avatar" => $appointment->avatar ? env("APP_URL")."storage/".$appointment->avatar : NULL,
+                    "avatar" => $appointment->patient->avatar ? env("APP_URL")."storage/".$appointment->patient->avatar : NULL,
                     "email" => $appointment->patient->email,
                     "mobile" => $appointment->patient->mobile,
                     "specialitie_name" => $appointment->specialitie->name,
@@ -64,7 +64,7 @@ class NotificationAppointments extends Command
         foreach ($patients as $key => $patient) {
             Mail::to($patient["email"])->send(new NotificationAppoint($patient));
         }
-        
+
          dd($patients);
     }
 }
