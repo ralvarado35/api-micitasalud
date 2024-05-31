@@ -33,7 +33,7 @@ class NotificationAppointmentWasap extends Command
         //$simulet_hour_number = date(now()->format("Y-m-d")); //strtotime(date("2024-05-29 15:10:00"));  //
 
         //$simulet_hour_number = date(now()->format("Y-m-d H:i:s"));
-        $simulet_hour_number = date("2024-05-31 15:01:35");
+        $simulet_hour_number = date("2024-05-31 16:01:35");
         $now = now()->format("Y-m-d");
 
         $appointments = Appointment::whereDate("date_appointment",$now)//now()->format("Y-m-d")
@@ -80,11 +80,7 @@ class NotificationAppointmentWasap extends Command
 
         foreach ($patients as $key => $patient) {
             $accessToken = 'EAALo0UGYdUcBOzXlZBPWduUM18LsKzG8oechzfT0d0m0Dw980Q1Cn8mZBdNKwYZBs6aZBFhxze7lZBnoxgNIlUlETIUw6ZAI6Tt1zmLELL9YeIRlryXl6yvTorRZB4Bi9II67t7TZBMp167XbZA1IEoiOtvgfkm2JEmrCiTAQe9QYAPhbzofVkQ9TtaF12FIufEd9mVaOaMVmaO0R6oBiUlmaTUbZBUVKSZCdzEPw9QYPxipJ8chsoR5L7ZA';
-
             $fbApiUrl = 'https://graph.facebook.com/v19.0/319104057956594/messages';
-
-
-
             $data = [
                 'messaging_product' => 'whatsapp',
                 'to' => '+503 71293626',
@@ -115,6 +111,11 @@ class NotificationAppointmentWasap extends Command
                                     "type"=> "text",
                                     "text"=>  $patient["doctor_full_name"]
                                 ],
+                                [
+                                    "type"=> "text",
+                                    "text"=>  $patient["specialitie_name"]
+                                ],
+
                             ]
                         ],
                     ],
